@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面</title>
+</head>
+<body>
+
+<div id="app">
+    <a @click="testAxios"  th:href="@{/testAxios}">springMVC处理axios数据</a>
+</div>
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.js}"></script>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        methods:{
+            testAxios:function (event){
+                axios({
+                    method: "post",
+                    url: event.target.href,
+                    params:{
+                        username:"admin",
+                        password:"12"
+                    }
+                }).then(function (response){
+                    alert(response.data);
+                });
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+<br>
+
+<h1>这使你</h1>
+<!--<a  th:href="@{/target}">访问目标页面target.html</a>-->
+<!--<a th:href="@{/hello/success}">这是访问测试requestmapping的</a><br>-->
+<!--<a th:href="@{/success}">这是访问测试requestmapping的-&#45;&#45;&ndash;&gt;success</a><br>-->
+<!--1.整体get的请求方式-->
+<a th:href="@{/test(username='admin',passwad=1252)}">1.这是访问测试requestmapping的---->test</a><br>
+<!--2.整体post的请求方式，因为post需要用表单的形式去发送数据，
+点击按钮的时候，会把数据提交上去-->
+<form th:action="@{/test(username='admin')}" method="post">
+    <input type="submit" value="post请求的方式">
+</form><br>
+
+<br>
+
+
+<!--3.get注解的方法请求-->
+<a th:href="@{/a1a/GetMapping}">2.get注解方法的请求</a>
+<!--4.Post注解的请求方式-->
+<form th:action="@{/PostMapping}" method="post">
+    <input type="submit" value="post注解的方式">
+</form><br>
+
+
+
+<!--  5.参数的形式传递修改数据-->
+<a th:href="@{/testpath/2/admin}">3.参数的形式传递修改数据</a><br>
+<br>
+
+
+<!--  6.-->
+<!--<a th:href="@{/params}">这是接受参数的params</a>-->
+<!--<a th:href="@{/param(username='admin',password=12354254)}">这是接受参数的params</a>-->
+
+
+<!--7.原始的方式向request中去共享数据-->
+<a th:href="@{/testRequestServletAPI}">4.原始的方式向request中去共享数据</a>
+
+<br>
+<br>
+<!--8.springMVC中自带的共享数据的方式，可以不用在接受数据的时候，来写接受的代码，会自动打在屏幕上的-->
+<a th:href="@{/testModelAndView}">5.springMVC中testModelAndView共享数据的方式</a><br>
+<a th:href="@{/testModel}">springMVC中testModel共享数据的方式</a><br>
+<a th:href="@{/testsession}">ServletAPI向session共享数据的方式</a><br>
+<a th:href="@{/testapplication}">ServletAPI向application共享数据的方式</a><br>
+<a th:href="@{/testforward}">转发其他的请求（上几个是跳转页面）</a><br>
+<a th:href="@{/testRedirect}">重定向试图testRedirects解析器</a><br>
+<a th:href="@{/employee}">查看员工信息</a><br>
+
+
+
+<br>
+<br>
+
+
+<!--9.测试请求体RequestBody，是通过post的方式进行的-->
+<form th:action="@{/testRequestBody}" method="post">
+    用户名:<input type="text" name="username"><br>
+    密码:<input type="text" name="password"><br>
+    <input type="submit" value="6.测试Requestbody">
+</form>
+
+<br>
+<br>
+<!--10.获取请求的头和体-->
+<form th:action="@{/testRequestEntity}" method="post">
+    用户名:<input type="text" name="username"><br>
+    密码:<input type="text" name="password"><br>
+    <input type="submit" value="7.获取请求头和体">
+</form>
+<br>
+<br>
+
+
+<!--11.服务器向浏览器响应数据(原始的方式)-->
+<a th:href="@{/testResponse}">8.通过servletAPI的response对象响应浏览器数据</a><br>
+<br>
+<br>
+<!--12.springMvc中自带的相应到浏览器-->
+<a th:href="@{/testResponseBody}">9.springMvc中自带的相应到浏览器</a><br>
+
+<!--13.响应对象到浏览器，需要加上json的配置信息后，会自动的把对象转化json对象-->
+<a th:href="@{/testResopnseUser}">10.json响应对象到浏览器</a><br>
+
+<br>
+<!--14.处理自定义的异常-->
+<a th:href="@{/testException}">11.异常类型处理</a><br>
+
+
+</body>
+</html>

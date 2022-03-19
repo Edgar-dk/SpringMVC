@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Info</title>
+</head>
+<body>
+<h1>你好，这是你看到的内容</h1><br>
+<h1>下面的数据看到了吗</h1>
+<a href="#">delete</a><br>
+<a th:href="@{/testRedirect}">重定向试图testRedirects解析器</a><br>
+    <!--1.得到数据之后，要显示在页面上，就要有一个表格-->
+    <table id="dataTable" style="text-align: center" cellspacing="0" cellpadding="0" border="1">
+<!--        <tr>-->
+<!--            <th colspan="5">Employee Info</th>-->
+<!--        </tr>-->
+        <tr>
+            <th>id</th>
+            <th>lastName</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>options(<a th:href="@{/toadd}">add<a/>)</th>
+        </tr>
+<!--        each是一个循环，当过来很多的数据的时候，用一层一层的循环结构，来输出到面板上，a是可以为任何字符的
+employeeList1是按照接收数据的名字来些在上面去接收数据的-->
+        <tr th:each="employee : ${employeeList1}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.gender}"></td>
+            <td>
+                <a @click="deleteEmployee" th:href="@{'/employee/'+${employee.id}}">delete</a>
+                <a th:href="@{'/employee/'+${employee.id}}">update</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <form id="deleteform" method="post">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+    <script type="text/javascript">
+        var vue=new Vue({
+            //先获取表格
+            el:"#dataTable",
+            methods:{
+                //在方法里面，获取点击按钮事件，
+                deleteEmployee:function (event){
+                    //点击这个事件之后，在操作表单
+                    var deleteform = document.getElementById("deleteform");
+                    //event表示的是当前事件（当前的事件就是点击的哪一个）
+                    deleteform.action=event.target.href;
+                    //最后表单在提交
+                    deleteform.submit();
+                    //是取消链接的默认行为
+                    event.preventDefault();
+                }
+            }
+        });
+    </script>
+<br>
+<h1>下面的数据看到了吗</h1>
+<a href="#">delete</a><br>
+<a th:href="@{/testRedirect}">重定向试图testRedirects解析器</a><br>
+</body>
+</html>

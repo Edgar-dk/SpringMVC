@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>你好，这是你看到success的页面</h1>
+<!--1.在共享域中接受数据的时候，request是可以直接写键的名字来接受的，session和application需要在前面加上session
+在点建的名字就可以接受数据,下面是直接在text文本里面来接受数据-->
+<p th:text="${testRequestScope}"></p>
+<p th:text="${testModelAndView}"></p>
+<p th:text="${session.testSessionScope}"></p>
+<p th:text="${application.testApplicationScope}"></p>
+</body>
+</html>

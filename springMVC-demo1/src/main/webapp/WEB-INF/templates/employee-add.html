@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>employee-add</title>
+</head>
+<body>
+<form th:action="@{/employee}" method="post">
+<!--    name是为了在服务器中接收或者是 传递数据的时候，在前面写上名字，好让后端的人可以看懂这些数据是什么，因为这个是文本的形式
+去传递的，需要加上名字-->
+    lastName:<input type="text" name="lastName" ><br>
+    email:<input type="text" name="email" ><br>
+<!--    虽然说是没有文本，但是这个是以选择的方式来的，在服务器中看到的是value的值，就
+代表着性别是什么，原因很简单，因为你没有传递数据-->
+    sex:<input type="radio" name="gender" value="1" >male<input type="radio" name="gender" value="0" >female<br>
+    <input type="submit" value="add" ><br>
+</form>
+</body>
+</html>

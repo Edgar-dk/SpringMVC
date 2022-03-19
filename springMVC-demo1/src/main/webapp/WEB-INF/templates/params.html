@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>获取请求的参数</title>
+</head>
+<body>
+<h1>恭喜你进来了</h1>
+<a href="#">这是你看到阿德是</a>
+<a href="http://www.baidu.com">百度链接</a>
+<!--<a th:href="@{/param}">这是接受参数的param</a>-->
+<a th:href="@{/testServletAPI(username='admin',password=12354254)}">这是接受参数的params</a>
+<a th:href="@{/testparams(username='admin',password=12354254)}">这是接受参数的params</a>
+
+
+
+
+
+
+<!--    1.post的方式去传递参数，分析为什么是name=username，因为在浏览器发送数据
+之后，需要一个变量名来接受这个，用的就是username先接受着这个数据-->
+<form th:action="@{testparams}" method="post">
+    用户名：<input type="text" name="user_name"><br>
+    密码：<input type="password" name="password" ><br>
+<!--    在爱好上面的value是点击这个按钮之后，想服务器传递数据的时候，会把这个数据发送给服务器-->
+    爱好：<input type="checkbox" name="hobby" value="a">a
+    <input type="checkbox" name="hobby" value="b">b
+    <input type="checkbox" name="hobby" value="c">c
+<!--    提交按钮的value是显示在这个方框上面，子就是提交，就是把上后面的数据提交上去-->
+    <input type="submit" value="提交">
+</form><br>
+
+
+
+
+
+    <form th:action="@{/testBean}" method="post">
+        用户名：<input type="text" name="username"><br>
+        密码：<input type="password" name="password"><br>
+        性别：<input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女">女<br>
+        年龄：<input type="text" name="age"><br>
+        邮箱：<input type="text" name="email"><br>
+        <input type="submit" value="实体类接受请求参数">
+    </form>
+<a th:href="@{/testBean}">这是测是的</a>
+
+
+</form>
+</body>
+</html>

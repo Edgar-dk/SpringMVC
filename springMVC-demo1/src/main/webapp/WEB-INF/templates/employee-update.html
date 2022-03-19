@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--要接收数据，那就要每一个都要接收-->
+<form th:action="@{/employee}" method="post">
+<!--    真正的方式是get的方式去传输的数据-->
+    <input type="hidden" name="_method" value="get">
+    <input type="hidden" name="id" th:value="${Employee.id}">
+    lastName:<input type="text" name="lastName" th:value="${Employee.lastName}"><br>
+    email:<input type="text" name="email" th:value="${Employee.email}"><br>
+    sex:<input type="radio" name="gender" value="1" th:field="${Employee.gender}" >male
+        <input type="radio" name="gender" value="0" th:field="${Employee.gender}">female<br>
+    <input type="submit" value="update" ><br>
+</form>
+
+</body>
+</html>
